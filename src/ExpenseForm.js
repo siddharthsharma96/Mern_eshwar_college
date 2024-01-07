@@ -8,7 +8,7 @@ const ExpenseForm = ({ operation = "Add" }) => {
   const [date, setDate] = useState("");
   const [type, setType] = useState("");
   const params = useParams();
-  console.log(params);
+  // console.log(params);
   const updateTitle = (event) => {
     setTitle(event.target.value);
   };
@@ -24,12 +24,32 @@ const ExpenseForm = ({ operation = "Add" }) => {
   const updateType = (event) => {
     setType(event.target.value);
   };
+  const idData = async () => {
+    try {
+      const response = await fetch(
+        `http://localhost:8000/expenses/${params.id}`
+      );
+      if (response.ok) {
+        const data = await response.json();
+        setAmount(data.currency);
+        setDate(data.date);
+        setTitle(data.title);
+        setType(1);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   useEffect(() => {
     if (params && params.id) {
       console.log("api hit for edit");
+      idData();
+      console.log(amount, title, type);
     }
-  });
+  }, [params]);
 
+  console.log({ date, title, type });
   const handleFormSubmission = (event) => {
     event.preventDefault();
 

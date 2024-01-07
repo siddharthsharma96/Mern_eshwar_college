@@ -11,7 +11,7 @@ const router = createBrowserRouter([
     path: "/",
     element: <App />,
     children: [
-      { path: "", element: <Expenses /> },
+      { path: "/", element: <Expenses /> },
       {
         path: "/add-expense",
         element: <ExpenseForm operation={"Add"}></ExpenseForm>,
