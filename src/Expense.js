@@ -2,13 +2,18 @@ import { useState, useEffect } from "react";
 import BodyListItem from "./Bodylistitem";
 const Expenses = () => {
   const [details, setDetails] = useState();
+
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch("http://localhost:8000/expenses");
-      if (response.ok) {
-        const data = await response.json();
-        console.log(data);
-        setDetails(data);
+      try {
+        const response = await fetch("http://localhost:8000/expenses");
+        if (response.ok) {
+          const data = await response.json();
+          console.log(data);
+          setDetails(data);
+        }
+      } catch (err) {
+        console.log(err);
       }
     };
     fetchData();
