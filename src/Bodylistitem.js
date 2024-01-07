@@ -25,7 +25,9 @@ const BodyListItem = ({ details }) => {
         </div>
         <div className="flexbox flexbox-align-center">
           <h3 className="title">{details.title}</h3>
-          <span className="type-pill">{details.type}</span>
+          <span className="type-pill">
+            {details.type === 1 ? "Credit" : "Debit"}
+          </span>
         </div>
       </div>
       <div className="flexbox flexbox-align-center">
