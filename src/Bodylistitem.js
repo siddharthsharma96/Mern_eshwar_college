@@ -1,4 +1,10 @@
+import { useNavigate } from "react-router-dom";
+
 const BodyListItem = ({ details }) => {
+  const navigate = useNavigate();
+  const RedirectHandler = () => {
+    navigate(`/edit/${details.id}`);
+  };
   return (
     <li class="flexbox flexbox-justify-between">
       <div class="flexbox">
@@ -13,7 +19,7 @@ const BodyListItem = ({ details }) => {
       </div>
       <div class="flexbox flexbox-align-center">
         <div class="pill">{details.currency}</div>
-        <button class="actions">
+        <button class="actions" onClick={RedirectHandler}>
           <span class="material-icons edit">edit</span>
         </button>
         <button class="actions">

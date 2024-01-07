@@ -1,6 +1,19 @@
 import BodyListItem from "./Bodylistitem";
-const Expenses = ({ details }) => {
-  console.log(details);
+import { useState, useEffect } from "react";
+const Expenses = () => {
+  // console.log(details);
+  const [details, setDetails] = useState();
+  useEffect(() => {
+    const b = async () => {
+      const response = await fetch("http://localhost:8000/expenses");
+      if (response.ok) {
+        const data = await response.json();
+        console.log(data);
+        setDetails(data);
+      }
+    };
+    b();
+  }, []);
   return (
     <div class="layout-container__wrapper">
       <div class="flexbox flexbox-justify-between flexbox-align-baseline">

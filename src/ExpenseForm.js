@@ -1,12 +1,14 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
-const ExpenseForm = () => {
+const ExpenseForm = ({ operation = "Add" }) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [amount, setAmount] = useState(1000);
   const [date, setDate] = useState("");
   const [type, setType] = useState("");
-
+  const params = useParams();
+  console.log(params);
   const updateTitle = (event) => {
     setTitle(event.target.value);
   };
@@ -22,6 +24,11 @@ const ExpenseForm = () => {
   const updateType = (event) => {
     setType(event.target.value);
   };
+  useEffect(() => {
+    if (params && params.id) {
+      console.log("api hit for edit");
+    }
+  });
 
   const handleFormSubmission = (event) => {
     event.preventDefault();
@@ -39,7 +46,7 @@ const ExpenseForm = () => {
   return (
     <div className="layout-container__wrapper">
       <div className="heading">
-        <h3>ADD Expense Log</h3>
+        <h3>{operation} Expense Log</h3>
       </div>
       <hr />
       {/* Assignment to create a reset function */}
