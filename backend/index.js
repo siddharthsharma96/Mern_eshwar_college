@@ -8,27 +8,27 @@ app.use(cors());
 const details = [
   {
     id: 0,
-    day: "1",
-    month: "Jan",
+    date: "2024-01-20",
     title: "Fee",
-    type: "credit",
-    currency: "200 INR",
+    desc: "",
+    type: 2,
+    currency: 200,
   },
   {
     id: 1,
-    day: "20",
-    month: "Feb",
+    date: "2024-04-20",
     title: "Travell",
-    type: "Debit",
-    currency: "50000 INR",
+    desc: "",
+    type: 1,
+    currency: 50000,
   },
   {
     id: 2,
-    day: "1",
-    month: "March",
+    date: "2024-01-20",
     title: "Salary",
-    type: "credit",
-    currency: "200000 INR",
+    desc: "",
+    type: 2,
+    currency: 200000,
   },
 ];
 
@@ -43,15 +43,14 @@ app.get("/expenses", async (req, res) => {
 app.get("/expenses/:id", async (req, res) => {
   try {
     const { id } = req.params;
-    const userId = parseInt(id, 10); // Parse the ID to an integer
 
-    const user = details.find((detail) => detail.id === userId);
+    const data = details.find((detail) => detail.id === parseInt(id, 10));
 
-    if (!user) {
+    if (!data) {
       return res.status(404).json({ message: "User not found" });
     }
 
-    res.json(user);
+    res.json(data);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }

@@ -1,10 +1,27 @@
 const BodyListItem = ({ details }) => {
+  const monthNames = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+
   return (
     <li class="flexbox flexbox-justify-between">
       <div class="flexbox">
         <div class="flexbox flexbox-column flexbox-align-center date">
-          <div class="month">{details.month}</div>
-          <div class="day">{details.day}</div>
+          <div class="month">
+            {monthNames[new Date(details.date).getMonth()]}
+          </div>
+          <div class="day">{new Date(details.date).getDate()}</div>
         </div>
         <div class="flexbox flexbox-align-center">
           <h3 class="title">{details.title}</h3>
