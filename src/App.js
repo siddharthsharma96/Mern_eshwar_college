@@ -1,5 +1,7 @@
+import { BrowserRouter as Router } from "react-router-dom";
 import { useState } from "react";
 import "./App.css";
+
 import SideBar from "./Sidebar";
 import Body from "./Body";
 
@@ -8,15 +10,17 @@ function App() {
   const updateActiveItem = (params) => {
     setActiveItem(params);
   };
-  console.log(activeItem);
+
   return (
-    <div className="flexbox">
-      <SideBar
-        activeItem={activeItem}
-        updateActiveItem={updateActiveItem}
-      ></SideBar>
-      <Body activeItem={activeItem}></Body>
-    </div>
+    <Router basename={"/"}>
+      <div className="flexbox">
+        <SideBar
+          activeItem={activeItem}
+          updateActiveItem={updateActiveItem}
+        ></SideBar>
+        <Body activeItem={activeItem}></Body>
+      </div>
+    </Router>
   );
 }
 

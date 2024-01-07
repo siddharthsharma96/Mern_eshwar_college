@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Routes, Route } from "react-router-dom";
 import ExpenseForm from "./ExpenseForm";
 import Expenses from "./Expense";
 
@@ -15,32 +16,9 @@ const Body = ({ activeItem }) => {
     };
     b();
   }, []);
-  const details = [
-    {
-      day: "1",
-      month: "Jan",
-      title: "Fee",
-      type: "credit",
-      currency: "200 INR",
-    },
-    {
-      day: "20",
-      month: "Feb",
-      title: "Travell",
-      type: "Debit",
-      currency: "50000 INR",
-    },
-    {
-      day: "1",
-      month: "March",
-      title: "Salary",
-      type: "credit",
-      currency: "200000 INR",
-    },
-  ];
   return (
     <div class="layout-container">
-      {activeItem === 0 ? (
+      {/* {activeItem === 0 ? (
         <Expenses details={a}></Expenses>
       ) : activeItem === 1 ? (
         <ExpenseForm></ExpenseForm>
@@ -52,7 +30,22 @@ const Body = ({ activeItem }) => {
         <div class="layout-container__wrapper">
           <p>Page Not Found</p>
         </div>
-      )}
+      )} */}
+      <Routes>
+        <Route path="/" element={<Expenses details={a} />} />
+        <Route path="/expenses" element={<Expenses details={a} />} />
+        <Route path="/add-expense" element={<ExpenseForm />} />
+        <Route
+          path="/analytics"
+          element={
+            <div class="layout-container__wrapper">
+              <p>Analytics</p>
+            </div>
+          }
+        />
+        {/* Add more routes as needed */}
+        <Route path="*" element={<p>Page Not Found</p>} />
+      </Routes>
     </div>
   );
 };
