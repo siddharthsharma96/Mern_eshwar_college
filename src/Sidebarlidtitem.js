@@ -8,8 +8,8 @@ const SidebarListItem = ({ text, iconName, classe, updateActiveItem, id }) => {
         handler(ev, id);
       }}
     >
-      <a class={classe} href="javascript:void(0)">
-        <span class="material-icons">{iconName}</span>
+      <a className={classe} href="javascript:void(0)">
+        <span className="material-icons">{iconName}</span>
         <span>{text}</span>
       </a>
     </li>

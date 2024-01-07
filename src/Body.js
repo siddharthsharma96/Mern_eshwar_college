@@ -39,17 +39,17 @@ const Body = ({ activeItem }) => {
     },
   ];
   return (
-    <div class="layout-container">
+    <div className="layout-container">
       {activeItem === 0 ? (
         <Expenses details={a}></Expenses>
       ) : activeItem === 1 ? (
         <ExpenseForm></ExpenseForm>
       ) : activeItem === 2 ? (
-        <div class="layout-container__wrapper">
+        <div className="layout-container__wrapper">
           <p>Analytics</p>
         </div>
       ) : (
-        <div class="layout-container__wrapper">
+        <div className="layout-container__wrapper">
           <p>Page Not Found</p>
         </div>
       )}

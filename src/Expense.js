@@ -2,14 +2,14 @@ import BodyListItem from "./Bodylistitem";
 const Expenses = ({ details }) => {
   console.log(details);
   return (
-    <div class="layout-container__wrapper">
-      <div class="flexbox flexbox-justify-between flexbox-align-baseline">
+    <div className="layout-container__wrapper">
+      <div className="flexbox flexbox-justify-between flexbox-align-baseline">
         <h3>Expenses</h3>
-        <span class="pill info">INR 770</span>
+        <span className="pill info">INR 770</span>
       </div>
       <hr />
 
-      <div class="layout-container__expenses">
+      <div className="layout-container__expenses">
         <ul>
           {details && details.length > 0 ? (
             <>

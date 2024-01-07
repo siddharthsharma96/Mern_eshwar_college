@@ -15,26 +15,26 @@ const BodyListItem = ({ details }) => {
   ];
 
   return (
-    <li class="flexbox flexbox-justify-between">
-      <div class="flexbox">
-        <div class="flexbox flexbox-column flexbox-align-center date">
-          <div class="month">
+    <li className="flexbox flexbox-justify-between">
+      <div className="flexbox">
+        <div className="flexbox flexbox-column flexbox-align-center date">
+          <div className="month">
             {monthNames[new Date(details.date).getMonth()]}
           </div>
-          <div class="day">{new Date(details.date).getDate()}</div>
+          <div className="day">{new Date(details.date).getDate()}</div>
         </div>
-        <div class="flexbox flexbox-align-center">
-          <h3 class="title">{details.title}</h3>
-          <span class="type-pill">{details.type}</span>
+        <div className="flexbox flexbox-align-center">
+          <h3 className="title">{details.title}</h3>
+          <span className="type-pill">{details.type}</span>
         </div>
       </div>
-      <div class="flexbox flexbox-align-center">
-        <div class="pill">{details.currency}</div>
-        <button class="actions">
-          <span class="material-icons edit">edit</span>
+      <div className="flexbox flexbox-align-center">
+        <div className="pill">{details.currency}</div>
+        <button className="actions">
+          <span className="material-icons edit">edit</span>
         </button>
-        <button class="actions">
-          <span class="material-icons delete">delete</span>
+        <button className="actions">
+          <span className="material-icons delete">delete</span>
         </button>
       </div>
     </li>

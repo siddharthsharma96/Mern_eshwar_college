@@ -2,9 +2,9 @@ import SidebarListItem from "./Sidebarlidtitem";
 
 const Sidebar = ({ activeItem, updateActiveItem }) => {
   return (
-    <div class="sidebar-container">
-      <div class="sidebar-container__brand">Expense Tracker</div>
-      <div class="sidebar-container__list">
+    <div className="sidebar-container">
+      <div className="sidebar-container__brand">Expense Tracker</div>
+      <div className="sidebar-container__list">
         <ul>
           <SidebarListItem
             id={0}
