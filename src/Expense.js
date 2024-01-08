@@ -2,17 +2,20 @@ import { useState, useEffect } from "react";
 import BodyListItem from "./Bodylistitem";
 const Expenses = () => {
   const [details, setDetails] = useState();
-
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
     const fetchData = async () => {
       try {
+        setLoading(true);
         const response = await fetch("http://localhost:8000/expenses");
         if (response.ok) {
+          setLoading(false);
           const data = await response.json();
           console.log(data);
           setDetails(data);
         }
       } catch (err) {
+        setLoading(false);
         console.log(err);
       }
     };
@@ -25,7 +28,11 @@ const Expenses = () => {
         <span className="pill info">INR 770</span>
       </div>
       <hr />
-
+      {loading && (
+        <div className="loader-overlay">
+          <div className="load loader-overlay__animation"></div>
+        </div>
+      )}
       <div className="layout-container__expenses">
         <ul>
           {details && details.length > 0 ? (

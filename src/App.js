@@ -1,7 +1,8 @@
 import { useState } from "react";
 import "./App.css";
 import SideBar from "./Sidebar";
-import Body from "./Body";
+// import Body from "./Body";
+import { Outlet } from "react-router-dom";
 
 function App() {
   const [activeItem, setActiveItem] = useState(0);
@@ -15,7 +16,10 @@ function App() {
         activeItem={activeItem}
         updateActiveItem={updateActiveItem}
       ></SideBar>
-      <Body activeItem={activeItem}></Body>
+      <div className="layout-container">
+        <Outlet />
+      </div>
+      {/* <Body activeItem={activeItem}></Body> */}
     </div>
   );
 }

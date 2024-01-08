@@ -3,37 +3,37 @@ import { useState } from "react";
 const ExpenseForm = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [amount, setAmount] = useState(1000);
   const [date, setDate] = useState("");
+  const [amount, setAmount] = useState(100);
   const [type, setType] = useState("");
-
-  const updateTitle = (event) => {
-    setTitle(event.target.value);
+  const updateTitle = (e) => {
+    setTitle(e.target.value);
   };
-  const updateDescription = (event) => {
-    setDescription(event.target.value);
+  const updateDescription = (e) => {
+    setDescription(e.target.value);
   };
-  const updateAmount = (event) => {
-    setAmount(event.target.value);
+  const updateAmount = (e) => {
+    setAmount(e.target.value);
   };
-  const updateDate = (event) => {
-    setDate(event.target.value);
+  const updateDate = (e) => {
+    setDate(e.target.vale);
   };
-  const updateType = (event) => {
-    setType(event.target.value);
+  const updateType = (e) => {
+    setType(e.target.value);
   };
 
   const handleFormSubmission = (event) => {
     event.preventDefault();
-
-    console.log({
-      title,
-      description,
-      date,
-      amount,
-      type,
-    });
+    console.log("api hit");
     alert("Form submitted, store the data!");
+  };
+  const handleClear = () => {
+    setTitle("");
+    setAmount(100);
+    setDate("");
+    setDescription("");
+    setType("");
+    console.log("Cleared");
   };
 
   return (
@@ -42,11 +42,7 @@ const ExpenseForm = () => {
         <h3>ADD Expense Log</h3>
       </div>
       <hr />
-      {/* Assignment to create a reset function */}
-      <form
-        onSubmit={handleFormSubmission}
-        onReset={() => console.log("Form Reset!!")}
-      >
+      <form onSubmit={handleFormSubmission} onReset={handleClear}>
         <div className="form-wrap">
           <label htmlFor="title">Title</label>
           <input

@@ -1,4 +1,6 @@
-const SidebarListItem = ({ text, iconName, classe, updateActiveItem, id }) => {
+import { NavLink } from "react-router-dom";
+
+const SidebarListItem = ({ text, iconName, path, updateActiveItem, id }) => {
   const handler = (e, index = 0) => {
     updateActiveItem(index);
   };
@@ -8,10 +10,13 @@ const SidebarListItem = ({ text, iconName, classe, updateActiveItem, id }) => {
         handler(ev, id);
       }}
     >
-      <a className={classe} href="javascript:void(0)">
+      <NavLink
+        to={path}
+        className={({ isActive }) => (isActive ? "active" : "")}
+      >
         <span className="material-icons">{iconName}</span>
         <span>{text}</span>
-      </a>
+      </NavLink>
     </li>
   );
 };

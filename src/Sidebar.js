@@ -10,14 +10,16 @@ const Sidebar = ({ activeItem, updateActiveItem }) => {
             id={0}
             text={"expenses"}
             iconName={"insights"}
-            classe={activeItem === 0 ? "active" : ""}
+            path={"/"}
+            // classe={activeItem === 0 ? "active" : ""}
             updateActiveItem={updateActiveItem}
           ></SidebarListItem>
           <SidebarListItem
             id={1}
             text={"add-expense"}
             iconName={"note_add"}
-            classe={activeItem === 1 ? "active" : ""}
+            path={"/add-expense"}
+            // classe={activeItem === 1 ? "active" : ""}
             activeItem={activeItem}
             updateActiveItem={updateActiveItem}
           ></SidebarListItem>
@@ -25,7 +27,8 @@ const Sidebar = ({ activeItem, updateActiveItem }) => {
             id={2}
             text={"analytics"}
             iconName={"analytics"}
-            classe={activeItem === 2 ? "active" : ""}
+            path={"/analytics"}
+            // classe={activeItem === 2 ? "active" : ""}
             updateActiveItem={updateActiveItem}
           ></SidebarListItem>
         </ul>
