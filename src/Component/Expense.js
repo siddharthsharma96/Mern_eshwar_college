@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import BodyListItem from "./Bodylistitem";
+import BodyListItem from "../ChildComponents/Bodylistitem";
 const Expenses = () => {
   const [details, setDetails] = useState();
   const [loading, setLoading] = useState(false);

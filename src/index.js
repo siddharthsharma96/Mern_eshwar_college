@@ -4,8 +4,9 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import Expenses from "./Expense";
-import ExpenseForm from "./ExpenseForm";
+import ExpenseForm from "./Component/ExpenseForm";
+import Expenses from "./Component/Expense";
+
 const router = createBrowserRouter([
   {
     path: "/",

@@ -1,4 +1,4 @@
-import SidebarListItem from "./Sidebarlidtitem";
+import SidebarListItem from "../ChildComponents/Sidebarlidtitem";
 
 const Sidebar = ({ activeItem, updateActiveItem }) => {
   const utils = [
