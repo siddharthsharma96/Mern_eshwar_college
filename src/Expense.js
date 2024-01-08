@@ -11,7 +11,7 @@ const Expenses = () => {
         if (response.ok) {
           setLoading(false);
           const data = await response.json();
-          console.log(data);
+          // console.log(data);
           setDetails(data);
         }
       } catch (err) {
@@ -35,13 +35,17 @@ const Expenses = () => {
       )}
       <div className="layout-container__expenses">
         <ul>
-          {details && details.length > 0 ? (
-            <>
-              <BodyListItem details={details[0]}></BodyListItem>
-              <BodyListItem details={details[1]}></BodyListItem>
-              <BodyListItem details={details[2]}></BodyListItem>
-            </>
-          ) : null}
+          {details && details.length > 0
+            ? details.map((e) => {
+                console.log("Elements present", e);
+                return <BodyListItem details={e}></BodyListItem>;
+              })
+            : // <>
+              //   <BodyListItem details={details[0]}></BodyListItem>
+              //   <BodyListItem details={details[1]}></BodyListItem>
+              //   <BodyListItem details={details[2]}></BodyListItem>
+              // </>
+              null}
         </ul>
       </div>
     </div>

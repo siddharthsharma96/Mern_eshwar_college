@@ -1,3 +1,5 @@
+import { useNavigate } from "react-router-dom";
+
 const BodyListItem = ({ details }) => {
   const monthNames = [
     "Jan",
@@ -13,6 +15,10 @@ const BodyListItem = ({ details }) => {
     "Nov",
     "Dec",
   ];
+  const navigate = useNavigate();
+  const redirectHandler = () => {
+    navigate(`/edit/${details.id}`);
+  };
 
   return (
     <li className="flexbox flexbox-justify-between">
@@ -32,7 +38,7 @@ const BodyListItem = ({ details }) => {
       </div>
       <div className="flexbox flexbox-align-center">
         <div className="pill">{details.currency}</div>
-        <button className="actions">
+        <button className="actions" onClick={redirectHandler}>
           <span className="material-icons edit">edit</span>
         </button>
         <button className="actions">

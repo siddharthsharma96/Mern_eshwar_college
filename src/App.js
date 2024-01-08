@@ -9,7 +9,7 @@ function App() {
   const updateActiveItem = (params) => {
     setActiveItem(params);
   };
-  console.log(activeItem);
+
   return (
     <div className="flexbox">
       <SideBar

@@ -1,11 +1,14 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
-const ExpenseForm = () => {
+const ExpenseForm = ({ operation }) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [date, setDate] = useState("");
   const [amount, setAmount] = useState(100);
   const [type, setType] = useState("");
+  const params = useParams();
+
   const updateTitle = (e) => {
     setTitle(e.target.value);
   };
@@ -35,11 +38,35 @@ const ExpenseForm = () => {
     setType("");
     console.log("Cleared");
   };
+  const FetchDatForId = async () => {
+    try {
+      const response = await fetch(
+        `http://localhost:8000/expenses/${params.id}`
+      );
+      if (response.ok) {
+        const data = await response.json();
+        // console.log("Data for the id that is been clicked", data);
+        setAmount(data.currency);
+        setDate(data.date);
+        setTitle(data.title);
+        setDescription(data.desc);
+        setType(data.type);
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  };
+  useEffect(() => {
+    if (params && params.id) {
+      FetchDatForId();
+      // console.log("api for edit is been executed");
+    }
+  }, [params]);
 
   return (
     <div className="layout-container__wrapper">
       <div className="heading">
-        <h3>ADD Expense Log</h3>
+        <h3>{operation} Expense Log</h3>
       </div>
       <hr />
       <form onSubmit={handleFormSubmission} onReset={handleClear}>
@@ -108,7 +135,7 @@ const ExpenseForm = () => {
         </div>
         <div className="flexbox flexbox-reverse">
           <button className="btn" type="submit">
-            <span>ADD Expense</span>
+            <span>{operation === "Add" ? "ADD Expense" : "Update"}</span>
           </button>
           <button className="btn mr-5" type="reset">
             <span>Clear</span>
