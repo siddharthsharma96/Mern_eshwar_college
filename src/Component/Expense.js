@@ -7,7 +7,7 @@ const Expenses = () => {
     const fetchData = async () => {
       try {
         setLoading(true);
-        const response = await fetch("http://localhost:8000/expenses");
+        const response = await fetch("http://localhost:3000/expense");
         if (response.ok) {
           setLoading(false);
           const data = await response.json();

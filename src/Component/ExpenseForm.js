@@ -41,7 +41,7 @@ const ExpenseForm = ({ operation }) => {
   const FetchDatForId = async () => {
     try {
       const response = await fetch(
-        `http://localhost:8000/expenses/${params.id}`
+        `http://localhost:3000/expense/${params.id}`
       );
       if (response.ok) {
         const data = await response.json();
@@ -61,7 +61,40 @@ const ExpenseForm = ({ operation }) => {
       FetchDatForId();
       // console.log("api for edit is been executed");
     }
+    return () => {
+      handleClear();
+    };
   }, [params]);
+  const [sendData, setSendData] = useState({
+    date,
+    title,
+    description,
+    type,
+    amount,
+  });
+  console.log(sendData);
+  const updateParams = async () => {
+    try {
+      const response = await fetch(
+        `http://localhost:3000/expense/${params.id}`,
+        {
+          method: "PUT",
+          body: {
+            date: { date },
+            title: { title },
+            desc: { description },
+            type: { type },
+            currency: { amount },
+          },
+        }
+      );
+      if (response.ok) {
+        console.log("value updated");
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
     <div className="layout-container__wrapper">
@@ -134,7 +167,7 @@ const ExpenseForm = ({ operation }) => {
           </div>
         </div>
         <div className="flexbox flexbox-reverse">
-          <button className="btn" type="submit">
+          <button className="btn" type="submit" onClick={updateParams}>
             <span>{operation === "Add" ? "ADD Expense" : "Update"}</span>
           </button>
           <button className="btn mr-5" type="reset">

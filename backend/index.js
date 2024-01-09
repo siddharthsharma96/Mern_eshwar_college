@@ -35,7 +35,7 @@ const details = [
 // Get all users
 app.get("/expenses", async (req, res) => {
   try {
-    res.json(details);
+    res.status(200).json(details);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
@@ -53,6 +53,75 @@ app.get("/expenses/:id", async (req, res) => {
     res.json(data);
   } catch (err) {
     res.status(500).json({ message: err.message });
+  }
+});
+app.post("/expenses", async (req, res) => {
+  try {
+    const maxId = Math.max(...details.map((expense) => expense.id), 0);
+    const { date, title, desc, type, currency } = req.body;
+
+    const newExpense = {
+      id: maxId + 1,
+      date,
+      title,
+      desc,
+      type,
+      currency,
+    };
+
+    details.push(newExpense);
+
+    // res.status(201).json(newExpense);
+    res.status(201).json("message:Success");
+  } catch (err) {
+    res.status(400).json({ message: err.message });
+  }
+});
+app.put("/expenses/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { date, title, desc, type, currency } = req.body;
+
+    const expenseIndex = details.findIndex(
+      (detail) => detail.id === parseInt(id, 10)
+    );
+
+    if (expenseIndex === -1) {
+      return res.status(404).json({ message: "Expense not found" });
+    }
+
+    details[expenseIndex] = {
+      id: parseInt(id, 10),
+      date,
+      title,
+      desc,
+      type,
+      currency,
+    };
+
+    // res.json(details[expenseIndex]);
+    res.json("message:Success");
+  } catch (err) {
+    res.status(400).json({ message: err.message });
+  }
+});
+app.delete("/expenses/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const expenseIndex = details.findIndex(
+      (detail) => detail.id === parseInt(id, 10)
+    );
+
+    if (expenseIndex === -1) {
+      return res.status(404).json({ message: "Expense not found" });
+    }
+
+    const deletedExpense = details.splice(expenseIndex, 1);
+
+    res.json(deletedExpense);
+  } catch (err) {
+    res.status(400).json({ message: err.message });
   }
 });
 const PORT = 8000;
