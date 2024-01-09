@@ -19,7 +19,7 @@ const ExpenseForm = ({ operation }) => {
     setAmount(e.target.value);
   };
   const updateDate = (e) => {
-    setDate(e.target.vale);
+    setDate(e.target.value);
   };
   const updateType = (e) => {
     setType(e.target.value);
@@ -28,7 +28,7 @@ const ExpenseForm = ({ operation }) => {
   const handleFormSubmission = (event) => {
     event.preventDefault();
     console.log("api hit");
-    alert("Form submitted, store the data!");
+    // alert("Form submitted, store the data!");
   };
   const handleClear = () => {
     setTitle("");
@@ -65,27 +65,25 @@ const ExpenseForm = ({ operation }) => {
       handleClear();
     };
   }, [params]);
-  const [sendData, setSendData] = useState({
-    date,
-    title,
-    description,
-    type,
-    amount,
-  });
-  console.log(sendData);
+
+  console.log(date);
   const updateParams = async () => {
     try {
+      console.log(date);
       const response = await fetch(
         `http://localhost:3000/expense/${params.id}`,
         {
           method: "PUT",
-          body: {
-            date: { date },
-            title: { title },
-            desc: { description },
-            type: { type },
-            currency: { amount },
+          headers: {
+            "Content-Type": "application/json",
           },
+          body: JSON.stringify({
+            date: date,
+            title: title,
+            desc: description,
+            type: type,
+            currency: amount,
+          }),
         }
       );
       if (response.ok) {
